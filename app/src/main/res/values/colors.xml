@@ -8,9 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lightOrange">#FFCC85</color>
-    <color name="primaryOrange">#F85A3A</color>
+    <color name="darkOrange">#B0422C</color>
+    <color name="primaryOrange">#F87E3A</color>
     <color name="primaryGreen">#25A18E</color>
     <color name="primaryLBlue">#EBFEFF</color>
     <color name="primaryPurple">#414066</color>
-    <color name="darkOrange">#B0422C</color>
+    <color name="pWhite">#EBFEFF</color>
 </resources>

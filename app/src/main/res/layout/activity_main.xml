@@ -5,24 +5,72 @@
     android:id="@+id/outer_layout_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryOrange"
+    android:background="@color/pWhite"
+    android:gravity="bottom"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/hour_layout_id"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#BF3737"
+        android:layout_height="160dp"
+        android:background="@color/pWhite"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/primaryOrange">
+
+        <TextView
+            android:id="@+id/duration_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|left"
+            android:paddingStart="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:text="Set Alarm Durations"
+            android:textColor="@color/primaryPurple"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/duration_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <NumberPicker
+            android:id="@+id/duration_picker"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/primaryOrange"
+            android:solidColor="@color/lightOrange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/duration_tv">
+
+        </NumberPicker>
+
+        <Switch
+            android:id="@+id/am_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AM"
+            app:layout_constraintBottom_toTopOf="@+id/duration_picker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryOrange">
+
         <ImageView
             android:id="@+id/alarm1_icon"
             android:layout_width="50dp"
@@ -34,7 +82,7 @@
             app:layout_constraintEnd_toStartOf="@+id/alarm1_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_sleep" />
+            app:srcCompat="@drawable/ic_exercise_svgrepo_com" />
 
         <TextView
             android:id="@+id/alarm1_tv"
@@ -42,8 +90,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="0"
-            android:text="TextView"
+            android:text="Next alarm --:--"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/alarm1_icon"
             app:layout_constraintStart_toEndOf="@+id/alarm1_icon"
             app:layout_constraintTop_toTopOf="parent"
@@ -55,13 +105,27 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:clickable="true"
-            app:backgroundTint="@color/darkOrange"
+            app:backgroundTint="@color/primaryPurple"
             app:fabCustomSize="25dp"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
+            app:srcCompat="@drawable/ic_baseline_add_24_white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/remove_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            app:backgroundTint="@color/primaryPurple"
+            app:fabCustomSize="25dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_remove_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,23 +133,24 @@
         android:id="@+id/slider_holder1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        >
+        android:background="@color/darkOrange">
 
-<!--        <View-->
-<!--            android:id="@+id/drag_slider"-->
-<!--            android:layout_width="105dp"-->
-<!--            android:layout_height="82dp"-->
-<!--            android:background="#3F51B5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
+        <!--                <View-->
+        <!--                    android:id="@+id/drag_slider"-->
+        <!--                    android:layout_width="105dp"-->
+        <!--                    android:layout_height="82dp"-->
+        <!--                    android:background="#3F51B5"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/primaryOrange">
 
         <ImageView
             android:id="@+id/alarm2_icon"
@@ -106,8 +171,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="0"
-            android:text="TextView"
+            android:text="Next alarm --:--"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/alarm2_icon"
             app:layout_constraintStart_toEndOf="@+id/alarm2_icon"
             app:layout_constraintTop_toTopOf="parent"
@@ -119,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:clickable="true"
-            app:backgroundTint="@color/darkOrange"
+            app:backgroundTint="@color/primaryPurple"
             app:fabCustomSize="25dp"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -127,24 +194,40 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/remove_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            app:backgroundTint="@color/primaryPurple"
+            app:fabCustomSize="25dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_remove_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/slider_holder2"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        >
+        android:background="@color/darkOrange">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<!--    <View-->
-<!--        android:id="@+id/drag_slider2"-->
-<!--        android:layout_width="105dp"-->
-<!--        android:layout_height="82dp"-->
-<!--        android:background="#3F51B5"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <!--    <View-->
+    <!--        android:id="@+id/drag_slider2"-->
+    <!--        android:layout_width="105dp"-->
+    <!--        android:layout_height="82dp"-->
+    <!--        android:background="#3F51B5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/primaryOrange">
 
         <ImageView
             android:id="@+id/alarm3_icon"
@@ -165,8 +248,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="0"
-            android:text="TextView"
+            android:text="Next alarm --:--"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/alarm3_icon"
             app:layout_constraintStart_toEndOf="@+id/alarm3_icon"
             app:layout_constraintTop_toTopOf="parent"
@@ -178,7 +263,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:clickable="true"
-            app:backgroundTint="@color/darkOrange"
+            app:backgroundTint="@color/primaryPurple"
             app:fabCustomSize="25dp"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,17 +271,33 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/remove_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            app:backgroundTint="@color/primaryPurple"
+            app:fabCustomSize="25dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_remove_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/slider_holder3"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        />
-<!--    <View-->
-<!--        android:id="@+id/drag_slider3"-->
-<!--        android:layout_width="105dp"-->
-<!--        android:layout_height="82dp"-->
-<!--        android:background="#3F51B5"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+        android:background="@color/darkOrange"></androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <View-->
+    <!--        android:id="@+id/drag_slider3"-->
+    <!--        android:layout_width="105dp"-->
+    <!--        android:layout_height="82dp"-->
+    <!--        android:background="#3F51B5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </LinearLayout>
