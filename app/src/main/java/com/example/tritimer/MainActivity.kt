@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
@@ -33,6 +34,13 @@ import com.example.tritimer.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.lang.Float.max
 import java.lang.Float.min
 import java.util.*
@@ -65,6 +73,12 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         var constraintLayout2: ConstraintLayout?? = null
         var constraintLayout3: ConstraintLayout?? = null
 
+        lateinit var auth: FirebaseAuth
+        const val EMAIL: String = "template@email.com"
+        const val NAME : String = "Jack"
+        const val PASS : String = "12345"
+        val database = Firebase.database
+
     }
 
 
@@ -80,6 +94,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     private lateinit var picker : MaterialTimePicker
 
     var am: Boolean = true
+
+    //
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,6 +124,19 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
         amSwitch.setOnClickListener {
             am = amSwitch.isChecked
+            if(am){
+                constraintLayout1!!.setBackgroundColor(Color.rgb(235,254,255))
+                constraintLayout2!!.setBackgroundColor(Color.rgb(235,254,255))
+                constraintLayout3!!.setBackgroundColor(Color.rgb(235,254,255))
+
+            }else{
+                constraintLayout1!!.setBackgroundColor(Color.rgb(238,212,191))
+                constraintLayout2!!.setBackgroundColor(Color.rgb(238,212,191))
+                constraintLayout3!!.setBackgroundColor(Color.rgb(238,212,191))
+
+            }
+
+
         }
 
         timeLine.viewTreeObserver.addOnGlobalLayoutListener {
@@ -116,6 +145,34 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         }
 
         handleAddRemoveButtons()
+
+    }
+
+    fun write(){
+        database.getReference("data").child("tests").setValue("This is from Android", DatabaseReference.CompletionListener { error, ref ->
+
+            if(error == null){
+                Toast.makeText(this, "Wrote successfully", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "Wrote wrong", Toast.LENGTH_LONG).show()
+            }
+        } )
+    }
+
+    fun read(){
+        database.reference.child("data").child("tests").addListenerForSingleValueEvent(object: ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot)
+            {
+                val fetchedVal = snapshot.value.toString()
+                Log.i("TAG", "this was found ${fetchedVal}")
+            }
+
+            override fun onCancelled(error: DatabaseError)
+            {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     fun handleAddRemoveButtons(){
@@ -346,7 +403,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
             if(!am){
                 setHour += 12
-                setMinute += 12
             }
             calendar = Calendar.getInstance()
             calendar[Calendar.HOUR_OF_DAY] = setHour

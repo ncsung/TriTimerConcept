@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "131459207642",
+    "project_id": "tritimer-baa5a",
+    "storage_bucket": "tritimer-baa5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131459207642:android:b7e7bd42d9f5f3448530e3",
+        "android_client_info": {
+          "package_name": "com.example.tritimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131459207642-tpm28uivt2r0sactvlm3eb81gtqhsdrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiPMhlv-9JmSw3vt5arGsTsE5PkOWssno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131459207642-tpm28uivt2r0sactvlm3eb81gtqhsdrq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
