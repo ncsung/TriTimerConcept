@@ -27,7 +27,7 @@ import com.example.tritimer.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
-class MainActivity : AppCompatActivity(), View.OnTouchListener {
+class MainActivity : AppCompatActivity() {
 
     companion object{
         val hoursTextViewList: ArrayList<TextView> = ArrayList()
@@ -151,50 +151,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         }
     }
 
-    fun addSlider(constraintLayout: ConstraintLayout , width: Int, xPos: Float){
-        val newSlider = View(this)
-        val params = ConstraintLayout.LayoutParams(width,ViewGroup.LayoutParams.MATCH_PARENT)
-        newSlider.layoutParams = params
-        val idGen = View.generateViewId()
-        newSlider.id = idGen
-        newSlider.setBackgroundColor(getColor(R.color.primaryGreen))
-
-        newSlider.x = xPos
-
-        val constraintParams = newSlider.layoutParams as ConstraintLayout.LayoutParams
-
-        constraintParams.startToStart = constraintLayout.id
-        constraintParams.topToTop = constraintLayout.id
-        constraintParams.bottomToBottom = constraintLayout.id
-
-        newSlider.requestLayout()
-
-        constraintLayout.addView(newSlider)
-
-        newSlider.setOnTouchListener(this)
-    }
-
-
-    private fun handleSliderClip(constraintLayout: ConstraintLayout, slider:View)
-//    private fun handleSliderClip()
-    {
-        if (getSliderClipWidth(slider) > 0) {
-            addSlider(constraintLayout , slider.width, 0f)
-            Toast.makeText(this, "${constraintLayout.x}", Toast.LENGTH_SHORT).show()
-        }
-
-    }
-
-    private fun getSliderClipWidth(slider:View): Float{
-//        Toast.makeText(this, "width : $timeLineWidth", Toast.LENGTH_SHORT).show()
-        if(timeLineWidth > -1){
-            if (slider.x+slider.width > timeLineWidth)
-//                Toast.makeText(this, "Out of bounds", Toast.LENGTH_SHORT).show()
-                return slider.x+slider.width - timeLineWidth
-        }
-        return -1f
-    }
-
 //    private fun convertDPtoPX(dp:Int): Float{
 //        return dp * (this.getResources().getDisplayMetrics().densityDpi as Float / DisplayMetrics.DENSITY_DEFAULT)
 //    }
@@ -204,33 +160,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 //            .getDisplayMetrics().densityDpi as Float / DisplayMetrics.DENSITY_DEFAULT)).toInt()
 //    }
 
-    override fun onTouch(view: View?, p1: MotionEvent?): Boolean {
-        if (view != null && p1 != null) {
-            val action = p1.action
-            return when (action) {
-                MotionEvent.ACTION_UP -> {
-                    getSliderClipWidth(view)
-                    true
-                }
-
-                MotionEvent.ACTION_MOVE -> {
-                    dx = p1.x - touchx
-                    view.x = view.x + dx
-                    touchx = p1.x
-                    updateTime(view)
-                    handleSliderClip(constraintLayout1!! ,view)
-
-                    true
-                }
-                MotionEvent.ACTION_DOWN -> {
-                    touchx = p1.x
-                    true
-                }
-                else -> true
-            }
-        }
-        return false
-    }
 
 }
 
