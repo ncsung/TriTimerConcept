@@ -366,7 +366,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
             val channel = NotificationChannel("notficationChannel", name, importance)
             channel.description = desc
             val notificationManager = getSystemService(NotificationManager::class.java)
-
             notificationManager.createNotificationChannel(channel)
         }
     }
@@ -429,7 +428,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
                 }
                 MotionEvent.ACTION_DOWN -> {
                     touchx = p1.x
-
+                    cancelAlarm()
                     true
                 }
                 else -> true
